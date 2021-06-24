@@ -1,6 +1,4 @@
-from os import close
 import sqlite3
-from sqlite3.dbapi2 import connect
 
 def ins_in(names):
     connect_db = sqlite3.connect('test.db')

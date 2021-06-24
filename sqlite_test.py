@@ -1,5 +1,4 @@
 import sqlite3
-from sqlite3.dbapi2 import Cursor
 
 try:
     sqlite_connection = sqlite3.connect('test.db')
