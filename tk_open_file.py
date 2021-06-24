@@ -2,34 +2,35 @@ import datetime
 from tkinter import *
 from tkinter import scrolledtext
 import os
+from typing import Literal
 import insert_into
 import select
 
 class App:
      def __init__(self,win):
           self.master = win
-          self.t1 = Entry(width=30)
+          self.t1 = Entry(width=40)
           self.t1.grid(column=1, row=1)
-          self.t2 = Entry(width=30)
+          self.t2 = Entry(width=40)
           self.t2.grid(column=1, row=2)
-          self.t3 = Entry(width=30)
+          self.t3 = Entry(width=40)
           self.t3.grid(column=1, row=3)
           
           self.lbl0 = Label(win, text='---', justify=LEFT)
           self.lbl0.grid(column=1, row=0)
-          self.lbl1 = Label(win, text='П.І.Б. відвідувача', justify=LEFT)
+          self.lbl1 = Label(win, text='П.І.Б. відвідувача:',width=30, justify=LEFT)
           self.lbl1.grid(column=0, row=1)
-          self.lbl2 = Label(win, text='Хто дозволив', justify=LEFT)
+          self.lbl2 = Label(win, text='Хто дозволив:',width=30, justify=LEFT)
           self.lbl2.grid(column=0, row=2)
-          self.lbl3 = Label(win, text='Телефон', justify=LEFT)
+          self.lbl3 = Label(win, text='Кабінет:',width=30, justify=LEFT)
           self.lbl3.grid(column=0, row=3)
 
           self.b1 = Button(win, text='Зберегти', width=30, command=self.add)
-          self.b1.grid(column=0, row=4)
+          self.b1.grid(column=1, row=4)
           self.b2 = Button(win, text='Друк', width=30, command=self.printer)
-          self.b2.grid(column=1, row=4)
+          self.b2.grid(column=1, row=5)
           self.b3 = Button(win, text='Завантажити дані з бази', width=30, command=self.select_dbase)
-          self.b3.grid(column=1, row=5)
+          self.b3.grid(column=1, row=6)
               
 
      def add(self):
@@ -56,7 +57,7 @@ class App:
 
      def select_dbase(self):
           self.show_db = Listbox(width=40, selectbackground='gray')
-          self.show_db.grid(column=0, row=6)
+          self.show_db.grid(column=1, row=7)
           insert_db_text = select.sel()
           for i in insert_db_text:
                self.show_db.insert(END, i)
