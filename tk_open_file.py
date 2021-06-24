@@ -1,8 +1,6 @@
 import datetime
-from tkinter import *
-from tkinter import scrolledtext
 import os
-from typing import Literal
+from tkinter import *
 import insert_into
 import select
 
