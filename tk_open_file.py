@@ -45,7 +45,8 @@ class App:
           s = self.show_db.curselection()
           s2 = self.show_db.get(s[0])
           print(s2)
-          strig = 'Відвідувач: '+ str(s2[1])+'\n' +'Працівник: '+ str(s2[2])+'\n' +  'телефон: '+ str(s2[3])+'\n'+ str(s2[4])
+          strig = 'Відвідувач: '+ str(s2[1])+'\nПрацівник: '+ str(s2[2])+ \
+                '\nТелефон: '+ str(s2[3])+'\nДата візиту: '+ str(s2[4])
           f = open(r'12.txt', 'w')
           f.write(strig)
           f.close
