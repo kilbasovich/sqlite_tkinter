@@ -1,6 +1,7 @@
 import datetime
 import os
 from tkinter import *
+from tkinter import ttk
 import insert_into
 import select
 
@@ -29,7 +30,15 @@ class App:
           self.b2.grid(column=1, row=5)
           self.b3 = Button(win, text='Завантажити дані з бази', width=30, command=self.select_dbase)
           self.b3.grid(column=1, row=6)
-              
+          
+          self.tv = ttk.Treeview(win, columns=(1,2,3,4,5), show='headings')
+          self.tv.grid(column=0, row=9)
+          self.tv.heading(1, text='id',)
+          self.tv.heading(2, text='Відвідувач')
+          self.tv.heading(3, text='Працівник')
+          self.tv.heading(4, text='Кабінет')
+          self.tv.heading(5, text='Дата візиту')
+
 
      def add(self):
           name1 = self.t1.get()
@@ -42,11 +51,11 @@ class App:
           self.t3.delete(0,END)
 
      def printer(self):
-          s = self.show_db.curselection()
-          s2 = self.show_db.get(s[0])
-          print(s2)
-          strig = '   ПЕРЕПУСТКА\nВідвідувач: '+ str(s2[1])+'\nПрацівник: '+ str(s2[2])+ \
-                '\nКабінет: '+ str(s2[3])+'\nДата візиту: '+ str(s2[4])
+          s = self.tv.selection()
+          s2 = self.tv.item(s)
+          print(s2['values'])
+          strig = '   ПЕРЕПУСТКА\nВідвідувач: '+ str(s2['values'][1])+'\nПрацівник: '+ str(s2['values'][2])+ \
+                '\nКабінет: '+ str(s2['values'][3])+'\nДата візиту: '+ str(s2['values'][4])
           f = open(r'12.txt', 'w')
           f.write(strig)
           f.close
@@ -54,14 +63,10 @@ class App:
           
 
      def select_dbase(self):
-          self.show_db = Listbox(width=40, selectbackground='gray')
-          self.show_db.grid(column=1, row=7)
           insert_db_text = select.sel()
           for i in insert_db_text:
-               self.show_db.insert(END, i)
+               self.tv.insert('','end', values=i)
 
-              
-                
 
 window = Tk()
 app = App(window)
